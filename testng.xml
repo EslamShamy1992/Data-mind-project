@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Run Together Suite">
+    <test name="Run Together Tests">
+        <groups>
+            <run>
+                <include name="group1"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="BaseTest.baseTest"/>
+            <class name="TestCases.InfoTypeTest"/>
+            <class name="TestCases.DocTypeTest"/>
+        </classes>
+    </test>
+</suite>
