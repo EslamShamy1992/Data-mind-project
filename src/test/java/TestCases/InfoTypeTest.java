@@ -8,7 +8,7 @@ import org.testng.annotations.Test;
 public class InfoTypeTest extends baseTest {
 
 
-    @Test(priority = 1, groups = "group1")
+    @Test(priority = 1)
     public void Verify_Add_Info_Type() {
         String infoName= faker.name().firstName();
         driver.get(ConfigUtils.getInstance().getBaseUrl());

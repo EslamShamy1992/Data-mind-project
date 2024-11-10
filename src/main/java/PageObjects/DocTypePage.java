@@ -1,10 +1,8 @@
 package PageObjects;
-
 import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-
 import java.util.List;
 
 public class DocTypePage extends BasePage {
@@ -23,7 +21,6 @@ public class DocTypePage extends BasePage {
     private By fileTypeTab = By.id("mat-tab-label-1-1");
     private By assignButton = By.xpath("/html/body/app-root/div/app-main-layout/app-document-types-root/div/section/app-document-type-file-types/div/section/div/app-table-list/div/div[1]/div[3]/div/button[4]");
     private By menuButton = By.cssSelector("#pn_id_3");
-    private By excelFileOption = By.xpath("//*[@id=\"pn_id_3_2\"]/span");
     private By closeIcon = By.xpath("//*[@id=\"pn_id_3_list\"]/div[1]/button");
     private By confirmButton = By.xpath("//*[@id=\"mat-mdc-dialog-0\"]/div/div/app-file-types-dialog/div/div/div[2]/div/button[1]");
     private By infoTypeTab = By.id("mat-tab-label-1-2");

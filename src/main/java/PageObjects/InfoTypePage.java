@@ -1,5 +1,4 @@
 package PageObjects;
-
 import Base.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;

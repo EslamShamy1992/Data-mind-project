@@ -1,15 +1,10 @@
 package PageObjects;
-
 import Base.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-
+import org.openqa.selenium.*;
 import java.util.List;
 
-public class DicoveryPage extends BasePage {
-    public DicoveryPage(WebDriver driver) {
+public class DiscoveryPage extends BasePage {
+    public DiscoveryPage(WebDriver driver) {
         super(driver);
     }
 
@@ -18,10 +13,9 @@ public class DicoveryPage extends BasePage {
     private By newDiscoveryButton = By.xpath("/html/body/app-root/div/app-main-layout/app-discovery-list/div/section/app-table-list/div/div[1]/div[3]/div/button[4]");
     private By discoveryNameField = By.id("mat-input-3");
     private By endpointSelect = By.xpath("//*[@id=\"mat-select-value-5\"]/span");
-    private By endpointOption = By.xpath("//span[text()='EndPoint']");
     private By targetOptions = By.className("mdc-list-item__primary-text");
-    private By scheduleSelect = By.id("mat-select-6");
-    private By scheduleOption = By.xpath("//*[@id=\"mat-option-13\"]");
+    private By Selectdirectory = By.id("mat-select-6");
+    private By currentuserDirectory = By.xpath("//*[@id=\"mat-option-13\"]");
     private By scheduleManagerField = By.xpath("//*[@formcontrolname='scheduleManagerId']");
     private By scheduleOptions = By.cssSelector(".mdc-list-item__primary-text");
     private By discoveryFileInput = By.xpath("//input[@formcontrolname='discoveryFile']");
@@ -30,6 +24,14 @@ public class DicoveryPage extends BasePage {
     private By docExcelInput = By.xpath("//*[@id=\"mat-input-5\"]");
     private By saveButton = By.xpath("/html/body/app-root/div/app-main-layout/app-discovery-add-edit/div/section/div/div/form/div[9]/div/button[1]");
     private By actionButtons = By.cssSelector(".mat-mdc-menu-trigger.table-action-menu-btn");
+    private By assignEndpointButton = By.id("AssignEndpoint");
+    private By multiselectTrigger = By.className("p-multiselect-trigger");
+    private By multiselectItem = By.cssSelector(".p-multiselect-item");
+    private By assignButton = By.xpath("//*[@id='pn_id_3_list']/div[1]/button");
+    private By confirmButton = By.xpath("//*[@id='mat-mdc-dialog-0']/div/div/app-add-assigning/div/div/div[2]/form/div/app-button");
+
+
+
 
 
 
@@ -50,11 +52,11 @@ public class DicoveryPage extends BasePage {
     }
 
     // Method to select an endpoint from the dropdown
-    public void selectEndpoint() {
+    public void selectTaregtType(String endpoint) {
         driver.findElement(endpointSelect).click();
         List<WebElement> targets = driver.findElements(targetOptions);
         for (WebElement tar : targets) {
-            if (tar.getText().equals("EndPoint")) {
+            if (tar.getText().equals(endpoint)) {
                 tar.click();
                 break;
             }
@@ -62,13 +64,13 @@ public class DicoveryPage extends BasePage {
     }
 
     // Method to select a schedule from the dropdown
-    public void selectSchedule() {
-        driver.findElement(scheduleSelect).click();
-        driver.findElement(scheduleOption).click();
+    public void selectDirectory() {
+        driver.findElement(Selectdirectory).click();
+        driver.findElement(currentuserDirectory).click();
     }
 
     // Method to select the Schedule Manager
-    public void selectScheduleManager(String scheduleName) {
+    public void selectSchedule(String scheduleName) {
         driver.findElement(scheduleManagerField).click();
         List<WebElement> scheduleList = driver.findElements(scheduleOptions);
         for (WebElement sch : scheduleList) {
@@ -110,7 +112,45 @@ public class DicoveryPage extends BasePage {
         actionButtonsList.get(actionButtonsList.size() - 1).click();
     }
 
+    public void clickAssignEndpointButton() {
+        driver.findElement(assignEndpointButton).click();
+    }
 
+    // Click on the multi-select dropdown trigger
+    public void clickMultiselectTrigger() {
+        driver.findElement(multiselectTrigger).click();
+    }
+
+    // Select an endpoint from the list
+    public void selectEndpoint(String endpointName) {
+        List<WebElement> endpoints = driver.findElements(multiselectItem);
+        for (WebElement endpoint : endpoints) {
+            if (endpoint.getText().equals(endpointName)) {
+                ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", endpoint);
+                endpoint.click();
+                break;
+            }
+        }
+    }
+
+    // Click the "Assign" button
+    public void clickAssignButton() {
+        driver.findElement(assignButton).click();
+    }
+
+    // Click the confirmation button
+    public void clickConfirmButton() {
+        driver.findElement(confirmButton).click();
+    }
+
+    // Complete assignment process
+    public void completeAssignment(String endpointName) {
+        clickAssignEndpointButton();
+        clickMultiselectTrigger();
+        selectEndpoint(endpointName);
+        clickAssignButton();
+        clickConfirmButton();
+    }
 
 
 }

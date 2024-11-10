@@ -1,10 +1,7 @@
 package BaseTest;
 
 import DriverFactory.factory;
-import PageObjects.DocTypePage;
-import PageObjects.HomePage;
-import PageObjects.InfoTypePage;
-import PageObjects.LoginPage;
+import PageObjects.*;
 import com.github.javafaker.Faker;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
@@ -24,6 +21,7 @@ public class baseTest {
     protected Faker faker;
     protected InfoTypePage infoTypePage;
     protected DocTypePage docTypePage;
+    protected DiscoveryPage discoveryPage;
 
     @BeforeMethod
     public void setup() {
@@ -33,13 +31,14 @@ public class baseTest {
         homePage = new HomePage(driver);
         infoTypePage= new InfoTypePage(driver);
         docTypePage= new DocTypePage(driver);
+        discoveryPage= new DiscoveryPage(driver);
     }
 
     @AfterMethod
     public void take_screen_shot(ITestResult result) throws IOException {
 
 
-         driver.close();
+//         driver.close();
         if (ITestResult.FAILURE == result.getStatus()) {
             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             FileUtils.copyFile(screenshot, new File("C:\\Users\\Eslam.Elshamy\\IdeaProjects\\dataMind\\bugs"));

@@ -4,8 +4,7 @@ import Config.ConfigUtils;
 import org.testng.annotations.Test;
 public class DocTypeTest extends baseTest {
 
-
-    @Test(priority = 2, groups = "group1")
+    @Test(priority = 2)
     public void Verify_Add_DocType_assign_info_and_file() throws InterruptedException {
         int randomnumber = faker.number().numberBetween(0, 1000);
         String doctypeName = faker.name().lastName();
@@ -13,12 +12,11 @@ public class DocTypeTest extends baseTest {
         loginPage.AdminLogin(ConfigUtils.getInstance().getEmail(), ConfigUtils.getInstance().getPassword());
         homePage.clickSidebarMenu();
         homePage.click_docinput();
-        docTypePage.addDocType(doctypeName,randomnumber);
+        docTypePage.addDocType(doctypeName, randomnumber);
         Thread.sleep(1000);
         docTypePage.navigateToLastDocType();
         docTypePage.assignFileType("excel file");
         docTypePage.assignInfoType("New Info For Excel");
-
         System.out.println(doctypeName);
     }
 }
