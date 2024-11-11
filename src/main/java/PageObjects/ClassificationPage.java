@@ -32,7 +32,7 @@ public class ClassificationPage extends BasePage {
     private By documentTypeMatrixDropdown = By.id("doctype-matrix");
     private By documentTypeOptions = By.cssSelector(".p-multiselect-item");
     private By infoTypeMatrixDropdown = By.id("infotype-matrix");
-    private By infoTypeOptions = By.cssSelector(".p-multiselect-item");
+    private By infoTypeOptions = By.className("p-multiselect-item");
     private By confirmButton = By.xpath("//*[@id=\"mat-mdc-dialog-0\"]/div/div/app-matrix-assign-dialog/div/div/div[2]/form/div[2]/button[1]");
 
 
@@ -86,8 +86,9 @@ public class ClassificationPage extends BasePage {
     }
 
     // Method to select info type in matrix
-    public void selectInfoType(String infoType) {
-        waitUntilClickable(infoTypeMatrixDropdown).click();
+    public void selectInfoType(String infoType) throws InterruptedException {
+       driver.findElement(infoTypeMatrixDropdown).click();
+       Thread.sleep(1000);
         selectItemFromDropdown(infoTypeOptions, infoType);
     }
 
