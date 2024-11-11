@@ -29,7 +29,7 @@ public class DiscoveryPage extends BasePage {
     private By multiselectItem = By.cssSelector(".p-multiselect-item");
     private By assignButton = By.xpath("//*[@id='pn_id_3_list']/div[1]/button");
     private By confirmButton = By.xpath("//*[@id='mat-mdc-dialog-0']/div/div/app-add-assigning/div/div/div[2]/form/div/app-button");
-
+    private By startDiscovery= By.id("StartDiscovery");
 
 
 
@@ -152,5 +152,8 @@ public class DiscoveryPage extends BasePage {
         clickConfirmButton();
     }
 
+    public void StartDiscovery(){
+        driver.findElement(startDiscovery).click();
+    }
 
 }

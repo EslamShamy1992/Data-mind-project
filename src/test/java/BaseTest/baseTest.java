@@ -22,6 +22,7 @@ public class baseTest {
     protected InfoTypePage infoTypePage;
     protected DocTypePage docTypePage;
     protected DiscoveryPage discoveryPage;
+    protected ClassificationPage classificationPage;
 
     @BeforeMethod
     public void setup() {
@@ -32,6 +33,7 @@ public class baseTest {
         infoTypePage= new InfoTypePage(driver);
         docTypePage= new DocTypePage(driver);
         discoveryPage= new DiscoveryPage(driver);
+        classificationPage= new ClassificationPage(driver);
     }
 
     @AfterMethod

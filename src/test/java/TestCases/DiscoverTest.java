@@ -4,7 +4,6 @@ import Config.ConfigUtils;
 import org.testng.annotations.Test;
 public class DiscoverTest extends baseTest {
 
-
     @Test
     public void Add_New_Discovery() throws InterruptedException {
         String discoveryname = faker.name().lastName();
@@ -25,6 +24,9 @@ public class DiscoverTest extends baseTest {
         discoveryPage.clickLastActionButton();
         discoveryPage.completeAssignment("TEST008");
         System.out.println(discoveryname);
+        Thread.sleep(1000);
+        discoveryPage.clickLastActionButton();
+        discoveryPage.StartDiscovery();
 }
 
 }
