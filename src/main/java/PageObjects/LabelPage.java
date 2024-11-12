@@ -9,9 +9,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
-public class ClassificationPage extends BasePage {
+public class LabelPage extends BasePage {
 
-    public ClassificationPage(WebDriver driver) {
+    public LabelPage(WebDriver driver) {
         super(driver);
 
     }
@@ -19,8 +19,6 @@ public class ClassificationPage extends BasePage {
 
 
     // Locators
-    private By sidebarLabelOption = By.xpath("//*[@id=\"leftsidebar\"]/div/ul/li[4]/a/span");
-    private By subLabelOption = By.xpath("//*[@id=\"leftsidebar\"]/div/ul/li[4]/ul/li[1]/a");
     private By addLabelButton = By.xpath("/html/body/app-root/div/app-main-layout/app-labels-list/div/section/app-table-list/div/div[1]/div[3]/div/button[4]/span[2]");
     private By labelNameInput = By.xpath("//*[@formcontrolname='labelNameFL']");
     private By sensitivityDropdown = By.xpath("//*[@formcontrolname='sensitivityId']");
@@ -39,10 +37,7 @@ public class ClassificationPage extends BasePage {
 
 
     // Method to open sidebar and navigate to label creation
-    public void navigateToLabelCreation() {
-        waitUntilClickable(sidebarLabelOption).click();
-        waitUntilClickable(subLabelOption).click();
-    }
+
 
     // Method to click "Add Label" button
     public void clickAddLabelButton() {
@@ -55,8 +50,9 @@ public class ClassificationPage extends BasePage {
     }
 
     // Method to open and select sensitivity option
-    public void selectSensitivity(String sensitivityName) {
+    public void selectSensitivity(String sensitivityName) throws InterruptedException {
         waitUntilClickable(sensitivityDropdown).click();
+        Thread.sleep(1000);
         List<WebElement> sensitivityList = driver.findElements(sensitivityOptions);
         for (WebElement sensitivity : sensitivityList) {
             if (sensitivity.getText().equals(sensitivityName)) {

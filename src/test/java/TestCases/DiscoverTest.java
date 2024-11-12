@@ -17,9 +17,9 @@ public class DiscoverTest extends baseTest {
         discoveryPage.selectDirectory();
         Thread.sleep(1000);
         discoveryPage.selectSchedule("Qa schedule");
-        discoveryPage.uploadDiscoveryFile("excel file");
-        discoveryPage.enterDiscoveryInfo("excel info");
-        discoveryPage.uploadDiscoveryDocument("Doc excel");
+        discoveryPage.uploadDiscoveryFile(ConfigUtils.getInstance().FileType());
+        discoveryPage.enterDiscoveryInfo(ConfigUtils.getInstance().InfoType());
+        discoveryPage.uploadDiscoveryDocument(ConfigUtils.getInstance().DocType());
         discoveryPage.clickSaveButton();
         discoveryPage.clickLastActionButton();
         discoveryPage.completeAssignment("TEST008");

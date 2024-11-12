@@ -2,6 +2,8 @@ package PageObjects;
 
 import Base.BasePage;
 import org.openqa.selenium.*;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 public class HomePage extends BasePage {
 
     public HomePage(WebDriver driver) {
@@ -12,7 +14,10 @@ public class HomePage extends BasePage {
     private By docInput = By.xpath("//*[@id='leftsidebar']/div/ul/li[15]/ul/li[2]/a");
     private By InfoType = By.xpath("/html/body/app-root/div/app-main-layout/app-main/div/section/div/div/div[1]/button");
 
+    private By classificationsidebar= By.xpath("//*[@id=\"leftsidebar\"]/div/ul/li[4]/a/span");
+    private By labelsidebar = By.xpath("//*[@id=\"leftsidebar\"]/div/ul/li[4]/ul/li[1]/a");
 
+    private By drmpolicysidebar= By.xpath("//*[@id=\"leftsidebar\"]/div/ul/li[4]/ul/li[2]/a");
     public void clickSidebarMenu() {
       WebElement sidebar= driver.findElement(sidebarMenu);
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", sidebar);
@@ -32,6 +37,18 @@ public class HomePage extends BasePage {
         driver.findElement(InfoType).click();
     }
 
+    private WebElement waitUntilClickable(By locator) {
+        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+    }
+    public void navigateToLabelCreation() {
+        waitUntilClickable(classificationsidebar).click();
+        waitUntilClickable(labelsidebar).click();
+    }
+
+    public  void NavigateToPolicyCreation(){
+        waitUntilClickable(classificationsidebar).click();
+        waitUntilClickable(drmpolicysidebar).click();
+    }
 }
 
 

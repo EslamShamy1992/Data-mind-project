@@ -1,10 +1,9 @@
 package TestCases;
-
 import BaseTest.baseTest;
 import Config.ConfigUtils;
 import org.testng.annotations.Test;
 
-public class Classification extends baseTest {
+public class LabelTest extends baseTest {
 
 
     @Test
@@ -14,30 +13,27 @@ public class Classification extends baseTest {
         driver.get(ConfigUtils.getInstance().getBaseUrl());
         loginPage.AdminLogin(ConfigUtils.getInstance().getEmail(),
                 ConfigUtils.getInstance().getPassword());
-        classificationPage.navigateToLabelCreation();
+        homePage.navigateToLabelCreation();
         // Click "Add Label" button
-        classificationPage.clickAddLabelButton();
+        labelpage.clickAddLabelButton();
         // Enter a label name
-        classificationPage.enterLabelName(labelyname);
+        labelpage.enterLabelName(labelyname);
         // Select sensitivity "Top Secret"
-        Thread.sleep(1000);
-        classificationPage.selectSensitivity("Top Secret");
+        labelpage.selectSensitivity("Top Secret");
         // Save the label
-        classificationPage.saveLabel();
+        labelpage.saveLabel();
         // Perform an action on the last label
-        classificationPage.performActionOnLastLabel();
+        labelpage.performActionOnLastLabel();
         // Select the document type "doc excel"
-        classificationPage.selectDocumentType("doc excel");
+        labelpage.selectDocumentType(ConfigUtils.getInstance().DocType());
         // Select the info type "excel info"
-        classificationPage.selectInfoType("excel info");
+        labelpage.selectInfoType(ConfigUtils.getInstance().InfoType());
         // Confirm the matrix assignment
-        classificationPage.confirmMatrixAssignment();
-
-
-
-
+        labelpage.confirmMatrixAssignment();
 
 
     }
+
+
 
         }

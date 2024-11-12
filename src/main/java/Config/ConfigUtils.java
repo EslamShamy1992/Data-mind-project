@@ -40,4 +40,22 @@ public class ConfigUtils {
         throw new RuntimeException("couldn't find password");
 
     }
+    public String InfoType() {
+        String prop = properties.getProperty("InformationType");
+        if(prop != null ) return prop;
+        throw new RuntimeException("couldn't find password");
+
+    }
+    public String DocType() {
+        String prop = properties.getProperty("DocumentType");
+        if(prop != null ) return prop;
+        throw new RuntimeException("couldn't find password");
+
+    }
+    public String FileType() {
+        String prop = properties.getProperty("FileType");
+        if(prop != null ) return prop;
+        throw new RuntimeException("couldn't find password");
+
+    }
 }

@@ -15,8 +15,8 @@ public class DocTypeTest extends baseTest {
         docTypePage.addDocType(doctypeName, randomnumber);
         Thread.sleep(1000);
         docTypePage.navigateToLastDocType();
-        docTypePage.assignFileType("excel file");
-        docTypePage.assignInfoType("New Info For Excel");
+        docTypePage.assignFileType(ConfigUtils.getInstance().FileType());
+        docTypePage.assignInfoType(ConfigUtils.getInstance().InfoType());
         System.out.println(doctypeName);
     }
 }
