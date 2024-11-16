@@ -10,7 +10,7 @@ public class DRMpoliciesTest extends baseTest {
     
     @Test(invocationCount = 1)
     public void AddNewAutoPolicy() throws InterruptedException {
-        String Policyname = faker.name().lastName();
+
         driver.get(ConfigUtils.getInstance().getBaseUrl());
         loginPage.AdminLogin(ConfigUtils.getInstance().getEmail(),
                 ConfigUtils.getInstance().getPassword());
