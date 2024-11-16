@@ -4,6 +4,7 @@ import DriverFactory.factory;
 import PageObjects.*;
 import com.github.javafaker.Faker;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -24,7 +25,13 @@ public class baseTest {
     protected DiscoveryPage discoveryPage;
     protected LabelPage labelpage;
     protected DRMPoliciesPage drmPoliciesPage;
-
+    protected String Info;
+    protected String Doc;
+    protected String key;
+    protected String DiscoveryName;
+    protected String LabelName;
+    protected int randomnumber;
+    protected String disc;
     @BeforeMethod
     public void setup() {
         driver = factory.intializeDriver();
@@ -36,6 +43,14 @@ public class baseTest {
         discoveryPage= new DiscoveryPage(driver);
         labelpage = new LabelPage(driver);
         drmPoliciesPage= new DRMPoliciesPage(driver);
+        randomnumber = faker.number().numberBetween(10, 1000);
+         Info= faker.name().lastName();
+         Doc= faker.name().lastName();
+         key= faker.name().lastName();
+         disc= faker.name().lastName();
+        LabelName= faker.name().lastName();
+         DiscoveryName= faker.name().lastName();
+
     }
 
     @AfterMethod

@@ -6,12 +6,11 @@ public class DocTypeTest extends baseTest {
 
     @Test(priority = 2)
     public void Verify_Add_DocType_assign_info_and_file() throws InterruptedException {
-        int randomnumber = faker.number().numberBetween(0, 1000);
+        int randomnumber = faker.number().numberBetween(10, 1000);
         String doctypeName = faker.name().lastName();
         driver.get(ConfigUtils.getInstance().getBaseUrl());
         loginPage.AdminLogin(ConfigUtils.getInstance().getEmail(), ConfigUtils.getInstance().getPassword());
-        homePage.clickSidebarMenu();
-        homePage.click_docinput();
+        homePage.NavigateToDocTypePage();
         docTypePage.addDocType(doctypeName, randomnumber);
         Thread.sleep(1000);
         docTypePage.navigateToLastDocType();

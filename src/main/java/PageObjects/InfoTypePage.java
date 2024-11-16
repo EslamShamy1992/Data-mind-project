@@ -45,5 +45,12 @@ public class InfoTypePage extends BasePage {
     public void clickSubmitButton() {
         driver.findElement(submitButton).click();
     }
+    public void createInfoType(String nameEN, String key, String description) {
+        clickNewButton();
+        enterNameEN(nameEN);
+        enterKey(key);
+        enterDescription(description);
+        clickSubmitButton();
+    }
 }
 

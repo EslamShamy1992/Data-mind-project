@@ -8,14 +8,13 @@ public class DiscoveryPage extends BasePage {
         super(driver);
     }
 
-    private By menuToggle = By.xpath("//*[@id=\"leftsidebar\"]/div/ul/li[3]/a");
-    private By discoveryLink = By.xpath("//*[@id=\"leftsidebar\"]/div/ul/li[3]/ul/li/a");
+
     private By newDiscoveryButton = By.xpath("/html/body/app-root/div/app-main-layout/app-discovery-list/div/section/app-table-list/div/div[1]/div[3]/div/button[4]");
-    private By discoveryNameField = By.id("mat-input-3");
-    private By endpointSelect = By.xpath("//*[@id=\"mat-select-value-5\"]/span");
+    private By discoveryNameField = By.xpath("//*[@formcontrolname='discoveryNameFL']");
+    private By endpointSelect = By.xpath("//*[@formcontrolname='targetTypeId']");
     private By targetOptions = By.className("mdc-list-item__primary-text");
-    private By Selectdirectory = By.id("mat-select-6");
-    private By currentuserDirectory = By.xpath("//*[@id=\"mat-option-13\"]");
+    private By Selectdirectory = By.xpath("//*[@formcontrolname='directoryId']");
+    private By currentuserDirectory = By.className("mdc-list-item__primary-text");
     private By scheduleManagerField = By.xpath("//*[@formcontrolname='scheduleManagerId']");
     private By scheduleOptions = By.cssSelector(".mdc-list-item__primary-text");
     private By discoveryFileInput = By.xpath("//input[@formcontrolname='discoveryFile']");
@@ -27,19 +26,17 @@ public class DiscoveryPage extends BasePage {
     private By assignEndpointButton = By.id("AssignEndpoint");
     private By multiselectTrigger = By.className("p-multiselect-trigger");
     private By multiselectItem = By.cssSelector(".p-multiselect-item");
-    private By assignButton = By.xpath("//*[@id='pn_id_3_list']/div[1]/button");
+    private By assignButton = By.xpath("//*[@buttontitle='add']");
     private By confirmButton = By.xpath("//*[@id='mat-mdc-dialog-0']/div/div/app-add-assigning/div/div/div[2]/form/div/app-button");
     private By startDiscovery= By.id("StartDiscovery");
+    private By closeIcon = By.xpath("//*[@aria-label='Close']");
 
 
 
 
 
     // Method to navigate to the Discovery page
-    public void openDiscoveryPage() {
-        driver.findElement(menuToggle).click();
-        driver.findElement(discoveryLink).click();
-    }
+
 
     // Method to click on the New Discovery button
     public void clickNewDiscoveryButton() {
@@ -64,9 +61,19 @@ public class DiscoveryPage extends BasePage {
     }
 
     // Method to select a schedule from the dropdown
-    public void selectDirectory() {
+    public void selectDirectory() throws InterruptedException {
         driver.findElement(Selectdirectory).click();
-        driver.findElement(currentuserDirectory).click();
+//        driver.findElement(currentuserDirectory).click();
+        Thread.sleep(1000);
+        List<WebElement> user = driver.findElements(currentuserDirectory);
+        for (WebElement use : user) {
+            if (use.getText().equals("Current User Profile")) {
+                use.click();
+                break;
+            }
+        }
+
+        // Current User Profile
     }
 
     // Method to select the Schedule Manager
@@ -144,16 +151,37 @@ public class DiscoveryPage extends BasePage {
     }
 
     // Complete assignment process
-    public void completeAssignment(String endpointName) {
+    public void completeAssignment(String endpointName) throws InterruptedException {
         clickAssignEndpointButton();
         clickMultiselectTrigger();
         selectEndpoint(endpointName);
+        clickCloseIcon();
         clickAssignButton();
-        clickConfirmButton();
+//        clickConfirmButton();
     }
 
     public void StartDiscovery(){
         driver.findElement(startDiscovery).click();
     }
+    public void clickCloseIcon() {
+        driver.findElement(closeIcon).click();
+    }
 
+    public void createDiscovery(String discoveryName,String endpoint, String schedule, String fileType, String infoType, String docType, String assignmentId) throws InterruptedException {
+        clickNewDiscoveryButton();
+        enterDiscoveryName(discoveryName);
+        selectTaregtType(endpoint);
+        selectDirectory();
+        Thread.sleep(1000);
+        selectSchedule(schedule);
+        uploadDiscoveryFile(fileType);
+        enterDiscoveryInfo(infoType);
+        uploadDiscoveryDocument(docType);
+        clickSaveButton();
+        clickLastActionButton();
+        completeAssignment(assignmentId);
+        Thread.sleep(1000);
+        clickLastActionButton();
+        StartDiscovery();
+    }
 }

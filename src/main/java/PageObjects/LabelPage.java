@@ -31,7 +31,7 @@ public class LabelPage extends BasePage {
     private By documentTypeOptions = By.cssSelector(".p-multiselect-item");
     private By infoTypeMatrixDropdown = By.id("infotype-matrix");
     private By infoTypeOptions = By.className("p-multiselect-item");
-    private By confirmButton = By.xpath("//*[@id=\"mat-mdc-dialog-0\"]/div/div/app-matrix-assign-dialog/div/div/div[2]/form/div[2]/button[1]");
+    private By confirmButton = By.xpath("//*[@id=\"mat-mdc-dialog-2\"]/div/div/app-matrix-assign-dialog/div/div/div[2]/form/div[2]/button[1]");
 
 
 
@@ -76,7 +76,7 @@ public class LabelPage extends BasePage {
     }
 
     // Method to select document type in matrix
-    public void selectDocumentType(String documentType) {
+    public void selectDocumentType(String documentType){
         waitUntilClickable(documentTypeMatrixDropdown).click();
         selectItemFromDropdown(documentTypeOptions, documentType);
     }
@@ -86,11 +86,13 @@ public class LabelPage extends BasePage {
        driver.findElement(infoTypeMatrixDropdown).click();
        Thread.sleep(1000);
         selectItemFromDropdown(infoTypeOptions, infoType);
+
     }
 
     // Method to confirm the matrix assignment
-    public void confirmMatrixAssignment() {
+    public void confirmMatrixAssignment() throws InterruptedException {
         waitUntilClickable(confirmButton).click();
+        Thread.sleep(1000);
     }
 
     // Helper method to wait until an element is clickable
@@ -113,16 +115,20 @@ public class LabelPage extends BasePage {
                 break;
             }
         }
+
     }
 
 
-
-
-
-
-
-
-
+    public void createLabelAndAssignMatrix(String labelName, String sensitivity, String docType, String infoType) throws InterruptedException {
+        clickAddLabelButton();
+        enterLabelName(labelName);
+        selectSensitivity(sensitivity);
+        saveLabel();
+        performActionOnLastLabel();
+        selectDocumentType(docType);
+        selectInfoType(infoType);
+        confirmMatrixAssignment();
+    }
 
 
 

@@ -10,10 +10,9 @@ public class DocTypePage extends BasePage {
         super(driver);
     }
 
-    private By addDocTypeButton = By.xpath("/html/body/app-root/div/app-main-layout/app-main/div/section/div/div/div[2]/button");
     private By addButton = By.xpath("/html/body/app-root/div/app-main-layout/app-document-types-list/div/section/div/app-table-list/div/div[1]/div[3]/div/button[4]/span[1]");
-    private By doctypeNameInput = By.id("mat-input-3");
-    private By randomNumberInput = By.id("mat-input-5");
+    private By doctypeNameInput = By.xpath("//*[@formcontrolname='documentTypeNameFL']");
+    private By randomNumberInput = By.xpath("//*[@formcontrolname='maxSize']");
     private By saveButton = By.xpath("/html/body/app-root/div/app-main-layout/app-document-types-add-edit/div/section/div/div/form/div[6]/div/app-button[1]/button/span[2]");
     private By paginatorNextButton = By.xpath("/html/body/app-root/div/app-main-layout/app-document-types-list/div/section/div/app-table-list/div/div[3]/mat-paginator/div/div/div[2]/button[4]");
     private By actionButtons = By.cssSelector(".mat-mdc-menu-trigger.table-action-menu-btn");
@@ -32,9 +31,6 @@ public class DocTypePage extends BasePage {
 
 
 
-    public void clickAddDocTypeButton() {
-        driver.findElement(addDocTypeButton).click();
-    }
 
     public void clickAddButton() {
         driver.findElement(addButton).click();
@@ -130,16 +126,17 @@ public class DocTypePage extends BasePage {
     }
 
     public void addDocType(String name, int number) throws InterruptedException {
-        clickAddDocTypeButton();
         clickAddButton();
         enterDocTypeName(name);
         enterRandomNumber(number);
         clickSaveButton();
-        Thread.sleep(1000); // Consider replacing with an explicit wait
-        clickPaginatorNext();
+
     }
 
     public void navigateToLastDocType() throws InterruptedException {
+
+        clickPaginatorNext();
+        Thread.sleep(1000);
         clickLastActionButton();
         Thread.sleep(1000); // Consider replacing with an explicit wait
         clickDetailsButton();

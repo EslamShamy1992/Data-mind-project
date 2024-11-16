@@ -12,16 +12,9 @@ public class InfoTypeTest extends baseTest {
         String infoName= faker.name().firstName();
         driver.get(ConfigUtils.getInstance().getBaseUrl());
         loginPage.AdminLogin(ConfigUtils.getInstance().getEmail(), ConfigUtils.getInstance().getPassword());
-        homePage.clickSidebarMenu();
-        homePage.click_docinput();
-        homePage.clickInfoType();
-        infoTypePage.clickNewButton();
-        infoTypePage.enterNameEN(infoName);
-        infoTypePage.enterNameAR(faker.name().name());
-        infoTypePage.enterKey(faker.name().name());
-        infoTypePage.enterDescription(faker.name().lastName());
-        infoTypePage.clickSubmitButton();
-        //assert that info type is added successfully
+        homePage.navigateToInfoPage();
+        infoTypePage.createInfoType(infoName,faker.name().lastName()
+                ,faker.name().lastName());
         Assert.assertTrue(loginPage.LogoIsDisplayed());
         System.out.println(infoName);
     }
