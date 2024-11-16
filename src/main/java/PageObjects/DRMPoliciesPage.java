@@ -15,10 +15,9 @@ public class DRMPoliciesPage extends BasePage {
     }
 
 
-    By addpolicybutton= By.xpath("/html/body/app-root/div/app-main-layout/app-policies-list/div/section/app-table-list/div/div[1]/div[3]/div/button[4]/span[2]");
+    By addpolicybutton= By.xpath("/html/body/app-root/div/app-main-layout/app-policies-list/div/section/app-table-list/div/div[1]/div[3]/div/button[4]");
     By POLICY_NAME_INPUT = By.xpath("//*[@formcontrolname='policyNameFL']");
-    By POLICY_DATE_INPUT = By.id("ej2-datepicker_0_input");
-    By BUTTON = By.className("mdc-button__label");
+    By POLICY_DATE_INPUT =By.xpath("//*[@aria-label='datepicker']");
     By LAST_ACTION_BUTTON = By.cssSelector(".mat-mdc-menu-trigger.table-action-menu-btn");
     By SLIDE_TOGGLE_BUTTON = By.xpath("//*[@role='switch']");
 
@@ -62,13 +61,12 @@ public class DRMPoliciesPage extends BasePage {
     }
 
     // Method to perform all actions
-    public void createPolicy(String policyName, String policyDate) {
+    public void createPolicy(String policyName,String policyDate)  {
         ClickAddPolicyButton();
         enterPolicyName(policyName);
         enterPolicyDate(policyDate);
         clickLastActionButton();
         clickSlideToggleButton();
-        System.out.println(policyName);
     }
 
 

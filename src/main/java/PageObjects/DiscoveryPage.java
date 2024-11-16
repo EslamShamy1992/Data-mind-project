@@ -49,8 +49,9 @@ public class DiscoveryPage extends BasePage {
     }
 
     // Method to select an endpoint from the dropdown
-    public void selectTaregtType(String endpoint) {
+    public void selectTaregtType(String endpoint) throws InterruptedException {
         driver.findElement(endpointSelect).click();
+        Thread.sleep(1000);
         List<WebElement> targets = driver.findElements(targetOptions);
         for (WebElement tar : targets) {
             if (tar.getText().equals(endpoint)) {

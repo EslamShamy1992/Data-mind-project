@@ -16,29 +16,33 @@ public class EndToEndScenariosTest extends baseTest {
         //navigate to Info Page
         homePage.navigateToInfoPage();
         infoTypePage.createInfoType(Info, key
-                ,disc);
+                , disc);
         Thread.sleep(1000);
         // navigate to Document page
         homePage.click_docinput();
         homePage.clickAddDocTypeButton();
-        docTypePage.addDocType(Doc,randomnumber);
+        docTypePage.addDocType(Doc, randomnumber);
         docTypePage.navigateToLastDocType();
         docTypePage.assignFileType(ConfigUtils.getInstance().FileType());
         docTypePage.assignInfoType(Info);
         //navigate to label page
         homePage.navigateToLabelCreation();
-        labelpage.createLabelAndAssignMatrix(LabelName,"Top Secret",
+        labelpage.createLabelAndAssignMatrix(LabelName, "Top Secret",
                 Doc, Info);
+        //navigate to drm policy
+        homePage.clickPolicySideBar();
+        drmPoliciesPage.createPolicy(Policyname, "11/20/2025");
         //navigate to discovery
         homePage.openDiscoveryPage();
         discoveryPage.createDiscovery(DiscoveryName, "EndPoint",
                 "Qa schedule", ConfigUtils.getInstance().FileType(), Info,
                 Doc, "TEST008");
         //print the details
-        System.out.println(Info);
-        System.out.println(key);
-        System.out.println(Doc);
-        System.out.println(LabelName);
-        System.out.println(DiscoveryName);
+        System.out.println("Information type is :" + Info);
+        System.out.println("Key is :" + key);
+        System.out.println("Document type is :" + Doc);
+        System.out.println("Label name is :" + LabelName);
+        System.out.println("Discovery name is :" + DiscoveryName);
+        System.out.println("Policy name is :" + Policyname);
     }
 }

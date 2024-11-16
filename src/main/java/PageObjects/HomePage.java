@@ -80,6 +80,10 @@ public class HomePage extends BasePage {
         click_docinput();
         clickAddDocTypeButton();
     }
+    public void clickPolicySideBar(){
+
+        waitUntilClickable(drmpolicysidebar).click();
+    }
 }
 
 

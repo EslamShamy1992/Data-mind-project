@@ -74,8 +74,7 @@ public class DocTypePage extends BasePage {
     }
 
     public void selectFile(String text) {
-//       List<WebElement> choose=driver.findElements(multiSelectItems);
-//       choose.get(choose.size()-1).click();
+
         List<WebElement> items = driver.findElements(multiSelectItems);
         for (WebElement item : items) {
             if (item.getText().equals(text)) {
@@ -106,8 +105,6 @@ public class DocTypePage extends BasePage {
     }
 
     public void selectLastInfo(String text) {
-//        List<WebElement> infoItems = driver.findElements(multiSelectItems);
-//        infoItems.get(infoItems.size() - 1).click();
         List<WebElement> Infoitems = driver.findElements(multiSelectItems);
         for (WebElement item : Infoitems) {
             if (item.getText().equals(text)) {

@@ -32,6 +32,7 @@ public class baseTest {
     protected String LabelName;
     protected int randomnumber;
     protected String disc;
+    protected String Policyname;
     @BeforeMethod
     public void setup() {
         driver = factory.intializeDriver();
@@ -50,6 +51,7 @@ public class baseTest {
          disc= faker.name().lastName();
         LabelName= faker.name().lastName();
          DiscoveryName= faker.name().lastName();
+        Policyname= faker.name().lastName();
 
     }
 
